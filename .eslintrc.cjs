@@ -8,6 +8,7 @@ module.exports = {
     'airbnb/hooks',
     // "eslint:recommended", // replaced by airbnb codestyle
     'plugin:react/recommended',
+    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -16,9 +17,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 0,
   },
