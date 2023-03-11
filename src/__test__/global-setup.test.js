@@ -1,6 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// tests/setup.js
-import matchers from '@testing-library/jest-dom/matchers';
-import { expect } from 'vitest';
-
-expect.extend(matchers);
+// global-setup
+// Expect "No test suite found" Vitest bug
+import '@testing-library/jest-dom';
