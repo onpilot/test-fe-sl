@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import { filterSymbols } from '../helper/helper';
 
-export default function useFetchSymbols() {
+export default function useFetchConvertCurrency(symbol = 'IDR', amount = 1) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchSymbols = async (url) => {
+  const fetchConvertCurrency = async (url) => {
     setLoading(true);
     await fetch(url, { method: 'GET' })
       .then((res) => res.json())
       .then((resData) => {
-        const symbols = filterSymbols(resData.symbols);
-        setData(symbols);
+        setData(resData);
         setError(null);
       })
       .catch((err) => {
@@ -26,12 +24,12 @@ export default function useFetchSymbols() {
 
   useEffect(() => {
     async function request() {
-      const url = 'https://api.exchangerate.host/symbols';
-      fetchSymbols(url);
+      const url = `https://api.exchangerate.host/convert?from=USD&to=${symbol}&amount=${amount}`;
+      fetchConvertCurrency(url);
     }
 
     request();
-  }, []);
+  }, [symbol, amount]);
 
   return {
     data,

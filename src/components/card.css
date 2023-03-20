@@ -1,14 +1,16 @@
 .card {
-  width: 320px;
+  width: 80vw;
+  min-width: 340px;
+  max-width: 720px;
   border: 1px solid black;
 }
 
 .card-header, .card-main {
-  font-weight: bold;
   padding: 16px;
 }
 
 .card-header {
+  font-weight: bold;
   border-bottom: 1px solid black;
 }
 

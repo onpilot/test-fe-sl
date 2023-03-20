@@ -1,5 +1,6 @@
 export const supportedCurrencies = [
   'USD',
+  'EUR',
   'CAD',
   'IDR',
   'GBP',
@@ -11,6 +12,4 @@ export const supportedCurrencies = [
   'KRW',
 ];
 
-export const otherData = [
-  //
-];
+export const defaultCurrencies = ['IDR', 'EUR', 'GBP', 'SGD'];

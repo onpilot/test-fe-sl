@@ -1,0 +1,30 @@
+.list {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  margin: 1rem 0;
+}
+
+.list > div:nth-child(1) {
+  width: 100%;
+  padding: 16px;
+  border-right: 1px solid black;
+}
+
+.list div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+}
+
+.list--header {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list button {
+  width: 40px;
+  height: 40px;
+}
