@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { debounce } from '../helper/debounce';
 import useFetchSymbols from '../useCustomHook/useFetchSymbols';
 import CurrencyList from './CurrencyList';
 import './card.css';
@@ -6,7 +7,11 @@ import './card.css';
 export default function Card() {
   const [amount, setAmount] = useState(10);
   const { data, loading, error } = useFetchSymbols();
-  // console.log('🍌', data);
+
+  const debounceSetAmount = useCallback(
+    debounce((e) => setAmount(e.target.value), 400),
+    []
+  );
 
   return (
     <div className="card">
@@ -16,8 +21,8 @@ export default function Card() {
           <h1>USD</h1>
           <input
             type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={debounceSetAmount}
+            placeholder="10.00"
           />
         </div>
       </div>
