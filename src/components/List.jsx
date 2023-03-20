@@ -7,6 +7,7 @@ export default function List({ data, amount, setList }) {
   // eslint-disable-next-line react/prop-types
   const { description, code } = data;
   const { data: rate, loading, error } = useFetchConvertCurrency(code, amount);
+  console.log(rate);
 
   const removeList = (key) => {
     setList((prev) => prev.filter((e) => e !== key));
@@ -18,7 +19,7 @@ export default function List({ data, amount, setList }) {
         <div className="list--header">
           <p>{code}</p>
           {!loading ? (
-            <p>{Number(rate?.result?.toFixed(4)).toLocaleString()}</p>
+            <p>{Number(rate?.result?.toFixed(4)).toLocaleString() || 0}</p>
           ) : (
             <div className="ui active inline loader medium" />
           )}
@@ -30,7 +31,7 @@ export default function List({ data, amount, setList }) {
           1 USD = {code}
           <div>
             {!loading ? (
-              Number(rate?.info?.rate.toFixed(4)).toLocaleString()
+              Number(rate?.info?.rate?.toFixed(4)).toLocaleString() || 0
             ) : (
               <div className="ui active inline loader mini" />
             )}
