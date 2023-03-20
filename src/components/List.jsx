@@ -1,3 +1,4 @@
+import { Button, Icon } from 'semantic-ui-react';
 import useFetchConvertCurrency from '../useCustomHook/useFetchConvertCurrency';
 import './list.css';
 
@@ -16,22 +17,40 @@ export default function List({ data, amount, setList }) {
       <div>
         <div className="list--header">
           <p>{code}</p>
-          {!loading ? <p>{rate?.result?.toFixed(4)}</p> : 'Loading'}
+          {!loading ? (
+            <p>{Number(rate?.result?.toFixed(4)).toLocaleString()}</p>
+          ) : (
+            <div className="ui active inline loader medium" />
+          )}
         </div>
-        <p>
+        <span>
           {code} - {description}
-        </p>
-        <p>
+        </span>
+        <div style={{ display: 'flex', gap: 4 }}>
           1 USD = {code}
-          <span style={{ marginLeft: 8 }}>
-            {!loading ? rate?.info?.rate.toFixed(4) : 'Loading'}
-          </span>
-        </p>
+          <div>
+            {!loading ? (
+              Number(rate?.info?.rate.toFixed(4)).toLocaleString()
+            ) : (
+              <div className="ui active inline loader mini" />
+            )}
+          </div>
+        </div>
       </div>
       <div>
-        <button type="button" onClick={() => removeList(code)}>
+        <Button
+          icon
+          inverted
+          circular
+          color="red"
+          onClick={() => removeList(code)}
+        >
+          <Icon name="delete" />
+        </Button>
+        {/* Semantic UI Button elm issue: findDOMNode is deprecated in StrictMode */}
+        {/* <button type="button" onClick={() => removeList(code)}>
           (-)
-        </button>
+        </button> */}
       </div>
     </li>
   );

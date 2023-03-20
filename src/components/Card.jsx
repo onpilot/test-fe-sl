@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { Input } from 'semantic-ui-react';
 import { debounce } from '../helper/debounce';
 import useFetchSymbols from '../useCustomHook/useFetchSymbols';
 import CurrencyList from './CurrencyList';
@@ -16,21 +17,23 @@ export default function Card() {
   return (
     <div className="card">
       <div className="card-header">
-        <p>USD - United States Dollars</p>
+        <span>USD - United States Dollars</span>
         <div className="card--input">
           <h1>USD</h1>
-          <input
-            type="number"
-            onChange={debounceSetAmount}
-            placeholder="10.00"
-          />
+          <Input size="big" labelPosition="left" className="input">
+            <input
+              type="number"
+              onChange={debounceSetAmount}
+              placeholder="10.00"
+            />
+          </Input>
         </div>
       </div>
       <div className="card-main">
         {!loading && data ? (
           <CurrencyList currencies={data} amount={amount} />
         ) : (
-          'Loading'
+          <div className="ui active inline loader" />
         )}
       </div>
     </div>

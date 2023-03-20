@@ -4,9 +4,18 @@ ul {
 }
 
 .wrapper .inner-wrapper {
+  display: flex;
+  gap: 1rem;
   margin: 20px 0;
 }
 
-.wrapper button {
+.button-group {
   width: 100%;
+  max-width: 400px;
+}
+
+@media all and (max-width: 480px) {
+  .inner-wrapper {
+    flex-direction: column;
+  }
 }
