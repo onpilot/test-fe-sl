@@ -1,0 +1,12 @@
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper .inner-wrapper {
+  margin: 20px 0;
+}
+
+.wrapper button {
+  width: 100%;
+}
