@@ -2,26 +2,52 @@
   width: 80vw;
   min-width: 340px;
   max-width: 720px;
-  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .card-header, .card-main {
-  padding: 16px;
+  padding: 5%;
 }
 
 .card-header {
+  border-radius: 8px 8px 0 0;
+  background-color: #8BC6EC;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
   font-weight: bold;
-  border-bottom: 1px solid black;
+}
+
+.card-header > span {
+  font-size: large;
+  font-style: italic;
+  display: block;
+  margin-bottom: 0.8rem;
 }
 
 .card--input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 5%;
+}
+
+.card--input .input, input {
+  width: 100%;
 }
 
 .card--input input {
-  width: 100%;
-  text-align: right;
+  text-align: right !important;
+}
+
+.card--input input::placeholder {
+  color: #213547 !important;
+}
+
+@media all and (max-width: 480px) {
+  .card--input {
+    flex-direction: column;
+  }
+  .card--input input {
+    text-align: left !important;
+  }
 }

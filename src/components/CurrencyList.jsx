@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button, Icon, Dropdown } from 'semantic-ui-react';
 import { defaultCurrencies } from '../data/data';
 import List from './List';
 import './currency-list.css';
@@ -9,6 +10,14 @@ export default function CurrencyList({ currencies, amount }) {
   const [isAddCurrency, setIsAddCurrency] = useState(true);
   const [code, setCode] = useState(null);
 
+  const filteredCurrencies = Object.keys(currencies)
+    .filter((c) => list.findIndex((l) => l === c) === -1)
+    .map((e) => ({
+      key: e,
+      text: e,
+      value: e,
+    }));
+
   const handleClick = () => {
     setIsAddCurrency((prev) => !prev);
   };
@@ -16,10 +25,11 @@ export default function CurrencyList({ currencies, amount }) {
   const handleSubmit = () => {
     if (code) setList((prev) => [...prev, code]);
     setCode(null);
+    setIsAddCurrency((prev) => !prev);
   };
 
-  const handleSelect = (e) => {
-    setCode(e.target.value);
+  const handleSelect = (e, data) => {
+    setCode(data.value);
   };
 
   return (
@@ -39,39 +49,33 @@ export default function CurrencyList({ currencies, amount }) {
 
       {isAddCurrency ? (
         <div className="inner-wrapper">
-          <button type="button" onClick={handleClick}>
+          <Button fluid icon color="twitter" size="large" onClick={handleClick}>
+            <Icon name="plus circle" />
+            Add More Currency
+          </Button>
+          {/* Semantic UI Button elm issue: findDOMNode is deprecated in StrictMode */}
+          {/* <button type="button" onClick={handleClick}>
             (+) Add More Currency
-          </button>
+          </button> */}
         </div>
       ) : (
         <div className="inner-wrapper">
-          <label htmlFor="currency-choice">
-            Choose a currency:
-            <select
-              id="currency-choice"
-              name="currency-choice"
-              onChange={handleSelect}
-            >
-              {Object.keys(currencies).map((e) => {
-                return (
-                  <option
-                    key={e}
-                    value={e}
-                    disabled={list.find((l) => l === e)}
-                  >
-                    {e}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
+          <Dropdown
+            placeholder="Select Currency"
+            fluid
+            search
+            selection
+            options={filteredCurrencies}
+            onChange={handleSelect}
+          />
 
-          <button type="button" onClick={handleSubmit}>
-            Submit
-          </button>
-          <button type="button" onClick={handleClick}>
-            Cancel
-          </button>
+          <Button.Group className="button-group">
+            <Button onClick={handleClick}>Cancel</Button>
+            <Button.Or />
+            <Button color="twitter" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Button.Group>
         </div>
       )}
     </div>
