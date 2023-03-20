@@ -1,0 +1,25 @@
+.card {
+  width: 320px;
+  border: 1px solid black;
+}
+
+.card-header, .card-main {
+  font-weight: bold;
+  padding: 16px;
+}
+
+.card-header {
+  border-bottom: 1px solid black;
+}
+
+.card--input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card--input input {
+  width: 100%;
+  text-align: right;
+}
