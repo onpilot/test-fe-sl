@@ -13,11 +13,11 @@
 1. Clone or Fork this repository
 2. On your terminal, run
     ```
-    $ git clone https://github.com/onpilot/test-sequislife.git [new-directory-name]
+    $ git clone https://github.com/onpilot/test-fe-sl.git [new-directory-name]
 
     or
     
-    $ git clone git@github.com:onpilot/test-sequislife.git [new-directory-name]
+    $ git clone git@github.com:onpilot/test-fe-sl.git [new-directory-name]
     ```
 3. Install required dependencies. Then run the app.
     ```
